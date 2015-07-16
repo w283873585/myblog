@@ -8,6 +8,9 @@
 </head>
 <body>
 <form action="./login/check">
+	<input type="text" value="" name="info.userName" placeholder="请输入账号"><br/><br/>
+	<input type="text" value="" name="info.password" placeholder="请输入密码"><br/><br/>
+
 	<input type="text" value="" name="username" placeholder="请输入账号"><br/><br/>
 	<input type="text" value="" name="password" placeholder="请输入密码"><br/><br/>
 	<input type="submit" value="提交" /> 
