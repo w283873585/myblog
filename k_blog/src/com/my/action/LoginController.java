@@ -13,7 +13,7 @@ import com.my.model.LoginInfo;
 import com.my.util.MapUtil;
 
 @Controller
-@RequestMapping("/login")
+@RequestMapping("/login1")
 public class LoginController {
 
 	@RequestMapping("/check")
@@ -30,7 +30,7 @@ public class LoginController {
 				return "main";
 			} else {
 				System.out.println("you failed");
-				return null;
+				return "";
 			}
 		} finally {
 			sqlSession.close();
