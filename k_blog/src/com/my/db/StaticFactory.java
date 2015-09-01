@@ -12,35 +12,28 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class StaticFactory {
-	// mybatis session factoty
+
 	private static SqlSessionFactory factory; 
 	private StaticFactory() {}
 	
 	
 	public static void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
 		if (factory == null && sqlSessionFactory != null) {
-			factory=sqlSessionFactory;
+			factory = sqlSessionFactory;
 		}
 	}
-	/**
-	 * 鑾峰彇SqlSession 榛樿闈炶嚜鍔ㄦ彁浜�
-	 * 缁撳熬 close(); 鍓嶄竴瀹氳sqlSession.commit();
-	 * @return
-	 */
-	public static SqlSession getSqlSession(){
-		if(StaticFactory.factory==null){
+	
+	
+	public static SqlSession getSqlSession() {
+		if (StaticFactory.factory == null) {
 			createFactory();
-			if(factory==null) return null;
+			if (factory == null) return null;
 		}
 		return factory.openSession();
 	}
 	
-	/**
-	 *  鑾峰彇SqlSession  conn 鎻愪氦绫诲瀷
-	 * @param autocommit 
-	 * @return
-	 */
-	public static SqlSession getSqlSession(boolean autocommit){
+	
+	public static SqlSession getSqlSession(boolean autocommit) {
 		if (StaticFactory.factory == null) { 
 			createFactory();
 			if (factory == null) return null;
@@ -48,16 +41,16 @@ public class StaticFactory {
 		return factory.openSession(autocommit);
 	}
 	
-	public static Configuration getConfiguration(){
+	
+	public static Configuration getConfiguration() {
 		return factory.getConfiguration();
 	}
 	
+	
 	private synchronized static void createFactory() {
-		if(factory!=null) return ;
-		System.out.println("---------start----mybatis");
+		if (factory != null) return;
 		InputStream inputStream;
 		try {
-			// System.getProperty("admin.myouth.root");
 			String path = System.getProperty("admin.myouth.root");
 			if (path != null && !"".equals(path)) {
 				inputStream = new BufferedInputStream(
@@ -67,14 +60,14 @@ public class StaticFactory {
 				inputStream = Resources.getResourceAsStream(file);
 			}
 			factory = new SqlSessionFactoryBuilder().build(inputStream);
-			if(factory == null) {
-				System.out.println("-------mybatis 鍒濆鍖栧け璐");
+			if (factory == null) {
+				System.out.println("-------mybatis 工厂生成失败");
 			} else {
-				System.out.println("-------mybatis 鍒濆鍖栨垚鍔�");
+				System.out.println("-------mybatis 生成成功");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
-			System.out.println("-------mybatis 閰嶇疆鏂囦欢涓嶅瓨鍦�");
+			System.out.println("-------mybatis 工厂生成异常");
 		}
 		return;
 	}

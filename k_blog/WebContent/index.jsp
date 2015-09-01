@@ -31,7 +31,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="login/toLogin">SignIn</a></li>
+            <li><a href="${pageContext.request.contextPath}/login/toLogin">SignIn</a></li>
             <li><a href="../register/index.html">SignUp</a></li>
           </ul>
           <form class="navbar-form navbar-right">
